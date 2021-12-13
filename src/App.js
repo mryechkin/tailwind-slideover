@@ -6,7 +6,7 @@ import HeadlessSlideOver from './components/HeadlessSlideOver';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [isHeadlessOpen, setIsHeadlessOpen] = useState(false);
 
   const handleOnClose = () => setIsOpen(false);
 
@@ -19,9 +19,9 @@ function App() {
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-indigo-700 shadow-lg transform -skew-y-3 lg:skew-y-0 lg:-rotate-3 lg:rounded-3xl"></div>
           <div className="relative p-20 bg-white shadow-lg lg:rounded-3xl">
             <div className="max-w-md mx-auto lg:max-w-2xl">
-              <Button onClick={() => setIsOpen(true)}>Click Me</Button>
-              <Button className="mx-2" onClick={() => setOpen(true)}>
-                Click Me Again
+              <Button onClick={() => setIsOpen(true)}>Open (Custom)</Button>
+              <Button className="mx-2" onClick={() => setIsHeadlessOpen(true)}>
+                Open (Headless-UI)
               </Button>
               <p className="p-4">
                 Ipsum dolore cillum labore anim eu voluptate sunt est ea
@@ -78,13 +78,16 @@ function App() {
                 </div>
               </SlideOver>
               <HeadlessSlideOver
-                open={open}
-                setOpen={setOpen}
+                open={isHeadlessOpen}
+                setOpen={setIsHeadlessOpen}
                 title="Item Details"
               >
                 <div className="flex flex-col">
                   <input type="text" className="border-gray-300 rounded-md" />
-                  <Button className="mt-4" onClick={handleOnClose}>
+                  <Button
+                    className="mt-4"
+                    onClick={() => setIsHeadlessOpen(false)}
+                  >
                     OK
                   </Button>
                 </div>
